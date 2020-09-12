@@ -6,19 +6,20 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const IndexPage = ({data}) => (
+const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
     <Heading>Noah Watkins, Director</Heading>
     <Flex justifyContent="space-between">
-        <p>Test</p>
-        <p>Test</p>
-        <p>Test</p>
-        <p>Test</p>
+      <p>Test</p>
+      <p>Test</p>
+      <p>Test</p>
+      <p>Test</p>
     </Flex>
     <Box size="sm">
-      <Img 
-        fluid={data.file.childImageSharp.fluid}
+      <p>Test</p>
+      <Img
+        fluid={data.noahSuit.childImageSharp.fluid}
         alt="Noah in a suit"
       />
     </Box>
@@ -27,14 +28,10 @@ const IndexPage = ({data}) => (
 
 export const query = graphql`
   {
-    file(relativePath: {eq: "noah-suit.jpg"}) {
+    noahSuit: file(relativePath: {eq: "noah-suit.jpg"}) {
       childImageSharp {
         fluid {
-          aspectRatio
-          base64
-          sizes
-          src
-          srcSet
+          ...GatsbyImageSharpFluid
         }
       }
     }
