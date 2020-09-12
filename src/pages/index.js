@@ -1,22 +1,44 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
+import { Heading, Flex, Box } from "@chakra-ui/core";
+import Img from "gatsby-image"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
+const IndexPage = ({data}) => (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    <Heading>Noah Watkins, Director</Heading>
+    <Flex justifyContent="space-between">
+        <p>Test</p>
+        <p>Test</p>
+        <p>Test</p>
+        <p>Test</p>
+    </Flex>
+    <Box size="sm">
+      <Img 
+        fluid={data.file.childImageSharp.fluid}
+        alt="Noah in a suit"
+      />
+    </Box>
   </Layout>
 )
+
+export const query = graphql`
+  {
+    file(relativePath: {eq: "noah-suit.jpg"}) {
+      childImageSharp {
+        fluid {
+          aspectRatio
+          base64
+          sizes
+          src
+          srcSet
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage
